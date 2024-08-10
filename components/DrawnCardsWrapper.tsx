@@ -1,6 +1,7 @@
 import React from "react";
 import CardWrapper from "./CardWrapper";
 import { DrawnCards } from "@/types";
+import clsx from "clsx";
 
 function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   const { player, numberOfCards, sumOfCards, cards } = drawnCards;
@@ -8,7 +9,7 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   const CardSum = (
     <div className="flex gap-2 items-center text-white">
       <span>{player}:</span>
-      <span>{sumOfCards}</span>
+      <span>{player === "You" ? sumOfCards : cards[1].value}</span>
     </div>
   );
 
@@ -37,7 +38,16 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   );
 
   return (
-    <section className="w-full flex flex-col gap-4 items-center">
+    <section
+      className={clsx(
+        "w-full",
+        "flex",
+        "flex-col",
+        "gap-4",
+        "items-center",
+        player === "Dealer" && "flex-col-reverse"
+      )}
+    >
       {DrawDeck}
       {CardSum}
     </section>
