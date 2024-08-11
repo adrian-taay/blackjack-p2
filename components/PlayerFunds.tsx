@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { Chip } from "@/types";
 import clsx from "clsx";
 import { Undo2 } from "lucide-react";

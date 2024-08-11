@@ -1,5 +1,6 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { Btn } from "@/types";
 
 function Button({ settings }: { settings: Btn }) {
@@ -26,6 +27,7 @@ function Button({ settings }: { settings: Btn }) {
         "rounded-lg",
         "shadow-lg"
       )}
+      onClick={action}
     >
       <span>{btnIcon}</span>
       <span>{btnName}</span>

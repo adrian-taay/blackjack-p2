@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import CardWrapper from "./CardWrapper";
 import { DrawnCards } from "@/types";
 import clsx from "clsx";
@@ -9,7 +10,7 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   const CardSum = (
     <div className="flex gap-2 items-center text-white">
       <span>{player}:</span>
-      <span>{player === "You" ? sumOfCards : cards[1].value}</span>
+      <span>{player === "You" ? sumOfCards : cards[1]?.value}</span>
     </div>
   );
 

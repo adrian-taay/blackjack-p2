@@ -1,9 +1,14 @@
+"use client";
+
+import { BlackjackContext } from "@/context/BlackjackProvider";
 import { RectangleVertical } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 
 function Header() {
+  const { gameDeck, drawnCardCount } = useContext(BlackjackContext);
+
   return (
-    <section className="relative flex justify-center items-center py-3 text-white">
+    <div className="relative flex justify-center items-center py-3 text-white">
       <h1
         className="font-extrabold text-xl text-center items-center tracking-widest px-2"
         style={{ textShadow: "2px 2px 10px #353932" }}
@@ -11,9 +16,10 @@ function Header() {
         BLΛƆK JΛƆK
       </h1>
       <span className="absolute right-6 flex items-center gap-1">
-        52 <RectangleVertical size={18} />
+        {gameDeck && drawnCardCount ? gameDeck.length - drawnCardCount : 0}
+        <RectangleVertical size={18} />
       </span>
-    </section>
+    </div>
   );
 }
 

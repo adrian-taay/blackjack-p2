@@ -1,9 +1,14 @@
-import React from "react";
+"use client";
+
+import { useContext } from "react";
 import Button from "./Button";
 import { Btn } from "@/types";
 import { CirclePlus, Handshake, ThumbsUp } from "lucide-react";
+import { BlackjackContext } from "@/context/BlackjackProvider";
 
 function PlayerControls() {
+  const { drawOneCard } = useContext(BlackjackContext);
+
   const BetAmount = (
     <div className="flex flex-col items-center bg-white/20 px-6 py-2 rounded-lg text-white">
       <span className="text-sm">Bet</span>
@@ -15,21 +20,21 @@ function PlayerControls() {
     btnIcon: <CirclePlus />,
     btnName: "Hit",
     color: "bg-yellow-500",
-    action: "",
+    action: drawOneCard,
   };
 
   const StandBtn: Btn = {
     btnIcon: <ThumbsUp />,
     btnName: "Stand",
     color: "bg-yellow-500",
-    action: "",
+    // action: "",
   };
 
   const DealBtn: Btn = {
     btnIcon: <Handshake />,
     btnName: "Deal",
     color: "bg-neutral-700",
-    action: "",
+    // action: "",
   };
 
   return (

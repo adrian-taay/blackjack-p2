@@ -1,6 +1,7 @@
+"use client";
+
 import { Card } from "@/types";
 import clsx from "clsx";
-import React from "react";
 
 function CardWrapper({ details }: { details: Card | null }) {
   if (!details)
