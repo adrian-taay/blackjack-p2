@@ -47,10 +47,9 @@ export type Btn = {
 export type ContextSettings = {
   gameDeck: Card[];
   setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
-  dealerCards: Card[];
-  playerCards: Card[];
+  setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
   dealerDrawnCards: DrawnCards;
   playerDrawnCards: DrawnCards;
-  drawnCardCount: number;
-  drawOneCard: () => void;
+  consequentDrawCardCount: number;
+  playerDrawsOneCard: () => void;
 };

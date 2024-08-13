@@ -3,50 +3,382 @@
 import { Card, ContextSettings, DrawnCards } from "@/types";
 import { createContext, useEffect, useState } from "react";
 import { shuffledDeckOfCards } from "@/context/deckOfCards";
+import { HeartIcon } from "lucide-react";
 
 export const BlackjackContext = createContext({} as ContextSettings);
 
+const temporaryDeck: Card[] = [
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "3",
+    value: 3,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "3",
+    value: 3,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "3",
+    value: 3,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "A",
+    value: 11,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "J",
+    value: 10,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+  {
+    suit: "Heart",
+    icon: <HeartIcon />,
+    displayIcon: <HeartIcon />,
+    name: "2",
+    value: 2,
+  },
+];
+
 function BlackjackProvider({ children }: { children: React.ReactNode }) {
-  const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
-  const [dealerCards, setDealerCards] = useState([] as Card[]);
-  const [playerCards, setPlayerCards] = useState([] as Card[]);
-  const [drawnCardCount, setDrawnCardCount] = useState(4);
+  const [gameDeck, setGameDeck] = useState<Card[]>(
+    temporaryDeck ? temporaryDeck : shuffledDeckOfCards
+  );
+  const [startGame, setStartGame] = useState(false);
+  const [initialDrawCardCount, setInitialDrawCardCount] = useState(0);
+  const [consequentDrawCardCount, setConsequentDrawCardCount] = useState(0);
+  const [playerTurn, setPlayerTurn] = useState(false);
+  const [finishDeal, setFinishDeal] = useState(false);
+
+  const [playerDrawnCards, setPlayerDrawnCards] = useState<DrawnCards>({
+    player: "You",
+    numberOfCards: 0,
+    sumOfCards: 0,
+    cards: [],
+  });
+  const [dealerDrawnCards, setDealerDrawnCards] = useState<DrawnCards>({
+    player: "Dealer",
+    numberOfCards: 0,
+    sumOfCards: 0,
+    cards: [],
+  });
 
   useEffect(() => {
-    setDealerCards([gameDeck[0], gameDeck[1]]);
-    setPlayerCards([gameDeck[2], gameDeck[3]]);
-  }, [gameDeck]);
+    if (!startGame) return;
+    if (initialDrawCardCount == 2) setPlayerTurn(true);
+    if (initialDrawCardCount == 4) return console.log("Initial draw complete");
 
-  const dealerDrawnCards: DrawnCards = {
-    player: "Dealer",
-    numberOfCards: dealerCards.length,
-    sumOfCards: dealerCards.reduce((a, b) => a + b.value, 0),
-    cards: dealerCards,
-  };
+    function initialDraw() {
+      const newCard = gameDeck[initialDrawCardCount];
 
-  const playerDrawnCards: DrawnCards = {
-    player: "You",
-    numberOfCards: playerCards.length,
-    sumOfCards: playerCards.reduce((a, b) => a + b.value, 0),
-    cards: playerCards,
-  };
+      if (playerTurn) {
+        setPlayerDrawnCards((p) => ({
+          ...p,
+          numberOfCards: p.numberOfCards + 1,
+          sumOfCards: p.sumOfCards + newCard.value,
+          cards: [...p.cards, newCard],
+        }));
+      } else {
+        setDealerDrawnCards((d) => ({
+          ...d,
+          numberOfCards: d.numberOfCards + 1,
+          sumOfCards: d.sumOfCards + newCard.value,
+          cards: [...d.cards, newCard],
+        }));
+      }
 
-  function drawOneCard(): void {
-    setPlayerCards((p) => [...p, gameDeck[drawnCardCount]]);
-    setDrawnCardCount((d) => d + 1);
+      setInitialDrawCardCount((c) => c + 1);
+      setConsequentDrawCardCount((c) => c + 1);
+    }
+
+    const delay = 750;
+    const timer = setTimeout(initialDraw, delay);
+
+    return () => clearTimeout(timer);
+  }, [gameDeck, startGame, initialDrawCardCount, playerTurn]);
+
+  function playerDrawsOneCard(): void {
+    const newCard = gameDeck[consequentDrawCardCount];
+
+    setPlayerDrawnCards((p) => {
+      let updatedCards = [...p.cards, newCard];
+      let updatedSum = p.sumOfCards + newCard.value;
+
+      if (p.sumOfCards + newCard.value > 21) {
+        updatedCards = updatedCards.map((card) =>
+          card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
+        );
+
+        updatedSum = updatedCards.reduce((a, b) => a + b.value, 0);
+      }
+
+      return {
+        ...p,
+        numberOfCards: p.numberOfCards + 1,
+        sumOfCards: updatedSum,
+        cards: updatedCards,
+      };
+    });
+
+    setConsequentDrawCardCount((c) => c + 1);
   }
 
-  console.log(gameDeck);
+  function dealerDrawsOneCard(): void {
+    const newCard = gameDeck[consequentDrawCardCount];
+
+    setDealerDrawnCards((d) => {
+      let updatedCards = [...d.cards, newCard];
+      let updatedSum = d.sumOfCards + newCard.value;
+
+      if (d.sumOfCards + newCard.value > 17) {
+        updatedCards = updatedCards.map((card) =>
+          card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
+        );
+
+        updatedSum = updatedCards.reduce((a, b) => a + b.value, 0);
+      }
+
+      return {
+        ...d,
+        numberOfCards: d.numberOfCards + 1,
+        sumOfCards: updatedSum,
+        cards: updatedCards,
+      };
+    });
+
+    setConsequentDrawCardCount((c) => c + 1);
+  }
 
   const settings: ContextSettings = {
     gameDeck,
     setGameDeck,
-    dealerCards,
-    playerCards,
+    setStartGame,
     dealerDrawnCards,
     playerDrawnCards,
-    drawnCardCount,
-    drawOneCard,
+    consequentDrawCardCount,
+    playerDrawsOneCard,
   };
 
   return (
