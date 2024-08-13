@@ -7,12 +7,13 @@ import { CirclePlus, Handshake, ThumbsUp } from "lucide-react";
 import { BlackjackContext } from "@/context/BlackjackProvider";
 
 function PlayerControls() {
-  const { setStartGame, playerDrawsOneCard } = useContext(BlackjackContext);
+  const { playerBet, handleStartGame, handleStand, playerDrawsOneCard } =
+    useContext(BlackjackContext);
 
   const BetAmount = (
     <div className="flex flex-col items-center bg-white/20 px-6 py-2 rounded-lg text-white">
       <span className="text-sm">Bet</span>
-      <span className="font-semibold">Php 1,000</span>
+      <span className="font-semibold">Php {playerBet}</span>
     </div>
   );
 
@@ -27,7 +28,7 @@ function PlayerControls() {
     btnIcon: <ThumbsUp />,
     btnName: "Stand",
     color: "bg-yellow-500",
-    // action: ,
+    action: handleStand,
   };
 
   const DealBtn: Btn = {
@@ -48,7 +49,7 @@ function PlayerControls() {
           <Button settings={StandBtn} />
         </span>
       </div>
-      <button onClick={() => setStartGame(true)}>Start</button>
+      <button onClick={handleStartGame}>Start</button>
     </div>
   );
 }

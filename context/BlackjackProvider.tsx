@@ -7,270 +7,271 @@ import { HeartIcon } from "lucide-react";
 
 export const BlackjackContext = createContext({} as ContextSettings);
 
-const temporaryDeck: Card[] = [
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "3",
-    value: 3,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "3",
-    value: 3,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "3",
-    value: 3,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "A",
-    value: 11,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "J",
-    value: 10,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-  {
-    suit: "Heart",
-    icon: <HeartIcon />,
-    displayIcon: <HeartIcon />,
-    name: "2",
-    value: 2,
-  },
-];
+// const temporaryDeck: Card[] = [
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "3",
+//     value: 3,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "3",
+//     value: 3,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "3",
+//     value: 3,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "A",
+//     value: 11,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "J",
+//     value: 10,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+// ];
 
 function BlackjackProvider({ children }: { children: React.ReactNode }) {
-  const [gameDeck, setGameDeck] = useState<Card[]>(
-    temporaryDeck ? temporaryDeck : shuffledDeckOfCards
-  );
+  const [playerBank, setPlayerBank] = useState(5000);
+  const [playerBet, setPlayerBet] = useState(0);
+  const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
   const [startGame, setStartGame] = useState(false);
-  const [initialDrawCardCount, setInitialDrawCardCount] = useState(0);
-  const [consequentDrawCardCount, setConsequentDrawCardCount] = useState(0);
+  const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
+  const [drawCardCount, setDrawCardCount] = useState(0);
   const [playerTurn, setPlayerTurn] = useState(false);
-  const [finishDeal, setFinishDeal] = useState(false);
+  const [finishPlayerTurn, setFinishPlayerTurn] = useState(false);
+  const [autoDraw, setAutoDraw] = useState(false);
 
   const [playerDrawnCards, setPlayerDrawnCards] = useState<DrawnCards>({
     player: "You",
@@ -285,42 +286,58 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     cards: [],
   });
 
+  const handleStartGame = (): void => {
+    setStartGame(true);
+    setAutoDraw(true);
+  };
+
+  const handleStand = (): void => {
+    setFinishPlayerTurn(true);
+    setPlayerTurn(false);
+    setShowHiddenDealerCard(true);
+    setAutoDraw(true);
+  };
+
   useEffect(() => {
     if (!startGame) return;
-    if (initialDrawCardCount == 2) setPlayerTurn(true);
-    if (initialDrawCardCount == 4) return console.log("Initial draw complete");
 
-    function initialDraw() {
-      const newCard = gameDeck[initialDrawCardCount];
-
-      if (playerTurn) {
-        setPlayerDrawnCards((p) => ({
-          ...p,
-          numberOfCards: p.numberOfCards + 1,
-          sumOfCards: p.sumOfCards + newCard.value,
-          cards: [...p.cards, newCard],
-        }));
-      } else {
-        setDealerDrawnCards((d) => ({
-          ...d,
-          numberOfCards: d.numberOfCards + 1,
-          sumOfCards: d.sumOfCards + newCard.value,
-          cards: [...d.cards, newCard],
-        }));
+    if (!finishPlayerTurn) {
+      if (drawCardCount >= 2) setPlayerTurn(true);
+      if (drawCardCount >= 4) {
+        setAutoDraw(false);
+        checkInitialBlackjack();
+        return console.log("Initial draw complete");
       }
+    }
 
-      setInitialDrawCardCount((c) => c + 1);
-      setConsequentDrawCardCount((c) => c + 1);
+    if (dealerDrawnCards.sumOfCards >= 17) {
+      compareCards();
+      return setAutoDraw(false);
+    }
+
+    function drawCard() {
+      if (playerTurn) {
+        playerDrawsOneCard();
+      } else {
+        dealerDrawsOneCard();
+      }
     }
 
     const delay = 750;
-    const timer = setTimeout(initialDraw, delay);
+    const timer = setTimeout(drawCard, delay);
 
     return () => clearTimeout(timer);
-  }, [gameDeck, startGame, initialDrawCardCount, playerTurn]);
+  }, [
+    gameDeck,
+    startGame,
+    drawCardCount,
+    playerTurn,
+    autoDraw,
+    finishPlayerTurn,
+  ]);
 
   function playerDrawsOneCard(): void {
-    const newCard = gameDeck[consequentDrawCardCount];
+    const newCard = gameDeck[drawCardCount];
 
     setPlayerDrawnCards((p) => {
       let updatedCards = [...p.cards, newCard];
@@ -342,11 +359,11 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
       };
     });
 
-    setConsequentDrawCardCount((c) => c + 1);
+    setDrawCardCount((c) => c + 1);
   }
 
   function dealerDrawsOneCard(): void {
-    const newCard = gameDeck[consequentDrawCardCount];
+    const newCard = gameDeck[drawCardCount];
 
     setDealerDrawnCards((d) => {
       let updatedCards = [...d.cards, newCard];
@@ -368,16 +385,51 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
       };
     });
 
-    setConsequentDrawCardCount((c) => c + 1);
+    setDrawCardCount((c) => c + 1);
+  }
+
+  function compareCards(): void {
+    if (playerDrawnCards.sumOfCards > dealerDrawnCards.sumOfCards) {
+      setPlayerBank((pb) => pb + playerBet);
+      setPlayerBet(0);
+      console.log("You Win!");
+    } else if (playerDrawnCards.sumOfCards === dealerDrawnCards.sumOfCards) {
+      setPlayerBet(0);
+      console.log("It's a tie! Deal has been refunded.");
+    } else {
+      setPlayerBank((pb) => pb - playerBet);
+      setPlayerBet(0);
+      console.log("Dealer Wins!");
+    }
+  }
+
+  function checkInitialBlackjack(): void {
+    const playerBlackjack = playerDrawnCards.sumOfCards === 21;
+
+    if (playerBlackjack) {
+      if (dealerDrawnCards.sumOfCards === 21) {
+        setPlayerBet(0);
+        return console.log("It's a tie! Bet has been refunded.");
+      }
+
+      setPlayerBank((pb) => pb + playerBet);
+      setPlayerBet(0);
+      return console.log("You win!");
+    }
   }
 
   const settings: ContextSettings = {
+    playerBank,
+    playerBet,
+    setPlayerBet,
     gameDeck,
     setGameDeck,
-    setStartGame,
+    handleStartGame,
+    handleStand,
+    showHiddenDealerCard,
     dealerDrawnCards,
     playerDrawnCards,
-    consequentDrawCardCount,
+    drawCardCount,
     playerDrawsOneCard,
   };
 

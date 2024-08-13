@@ -1,15 +1,15 @@
 "use client";
 
+import { BlackjackContext } from "@/context/BlackjackProvider";
 import { Chip } from "@/types";
 import clsx from "clsx";
-import { Undo2 } from "lucide-react";
+import { X } from "lucide-react";
+import { useContext } from "react";
 
 function PlayerFunds() {
+  const { playerBet, setPlayerBet } = useContext(BlackjackContext);
+
   const chips: Chip[] = [
-    {
-      value: 1,
-      color: "bg-gray-500",
-    },
     {
       value: 5,
       color: "bg-green-500",
@@ -31,6 +31,10 @@ function PlayerFunds() {
       color: "bg-purple-500",
     },
     {
+      value: 200,
+      color: "bg-lime-500",
+    },
+    {
       value: 500,
       color: "bg-yellow-500",
     },
@@ -39,6 +43,14 @@ function PlayerFunds() {
       color: "bg-blue-500",
     },
   ];
+
+  const addToBet = (chipValue: number): void => {
+    setPlayerBet((b) => b + chipValue);
+  };
+
+  const clearBet = (): void => {
+    setPlayerBet(0);
+  };
 
   const ChipsDisplay = (
     <span className="grid grid-cols-4 gap-4">
@@ -62,6 +74,7 @@ function PlayerFunds() {
             "shadow-lg",
             "cursor-pointer"
           )}
+          onClick={() => addToBet(chip.value)}
         >
           {chip.value}
         </span>
@@ -69,12 +82,12 @@ function PlayerFunds() {
     </span>
   );
 
-  const playerBet = (
+  const playerBetWrapper = (
     <span className="flex flex-col items-center gap-2 text-neutral-800">
       <span>Your Bet</span>
       <span className="w-48 border rounded-lg py-2 px-2 font-bold flex items-center justify-between">
-        <Undo2 size={18} className="cursor-pointer" />
-        <span className="flex-1 text-center">Php 1,000</span>
+        <X size={18} className="cursor-pointer" onClick={clearBet} />
+        <span className="flex-1 text-center">Php {playerBet}</span>
       </span>
     </span>
   );
@@ -82,7 +95,7 @@ function PlayerFunds() {
   return (
     <span className="flex flex-col items-center gap-6 my-4">
       {ChipsDisplay}
-      {playerBet}
+      {playerBetWrapper}
     </span>
   );
 }

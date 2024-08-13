@@ -18,7 +18,7 @@ export default function GamePage() {
       <DrawnCardsWrapper drawnCards={dealerDrawnCards} />
       <PlayerControls />
       <DrawnCardsWrapper drawnCards={playerDrawnCards} />
-      {/* <DealWindow /> */}
+      <DealWindow />
       {/* <DealResult /> */}
       <PlayerBalance />
     </main>

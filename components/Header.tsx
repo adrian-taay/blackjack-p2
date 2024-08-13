@@ -5,7 +5,7 @@ import { RectangleVertical } from "lucide-react";
 import React, { useContext } from "react";
 
 function Header() {
-  const { gameDeck, consequentDrawCardCount } = useContext(BlackjackContext);
+  const { gameDeck, drawCardCount } = useContext(BlackjackContext);
 
   return (
     <div className="relative flex justify-center items-center py-3 text-white">
@@ -16,9 +16,7 @@ function Header() {
         BLΛƆK JΛƆK
       </h1>
       <span className="absolute right-6 flex items-center gap-1">
-        {gameDeck && consequentDrawCardCount
-          ? gameDeck.length - consequentDrawCardCount
-          : 52}
+        {gameDeck && drawCardCount ? gameDeck.length - drawCardCount : 52}
         <RectangleVertical size={18} />
       </span>
     </div>

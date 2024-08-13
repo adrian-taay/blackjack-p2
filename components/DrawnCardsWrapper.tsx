@@ -1,16 +1,25 @@
 "use client";
 
+import { BlackjackContext } from "@/context/BlackjackProvider";
 import CardWrapper from "./CardWrapper";
 import { DrawnCards } from "@/types";
 import clsx from "clsx";
+import { useContext } from "react";
 
 function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
+  const { showHiddenDealerCard } = useContext(BlackjackContext);
   const { player, numberOfCards, sumOfCards, cards } = drawnCards;
 
   const CardSum = (
     <div className="flex gap-2 items-center text-white">
       <span>{player}:</span>
-      <span>{player === "You" ? sumOfCards : cards[1]?.value}</span>
+      <span>
+        {player === "You"
+          ? sumOfCards
+          : showHiddenDealerCard
+          ? sumOfCards
+          : cards[1]?.value}
+      </span>
     </div>
   );
 
@@ -31,7 +40,11 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
                 player === "You" ? "bottom center" : "top center",
             }}
           >
-            <CardWrapper details={hiddenDealerCard ? null : card} />
+            <CardWrapper
+              details={
+                !hiddenDealerCard ? card : showHiddenDealerCard ? card : null
+              }
+            />
           </div>
         );
       })}

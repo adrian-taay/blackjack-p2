@@ -45,11 +45,17 @@ export type Btn = {
 };
 
 export type ContextSettings = {
+  playerBank: number;
+  playerBet: number;
+  setPlayerBet: React.Dispatch<React.SetStateAction<number>>;
   gameDeck: Card[];
   setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
-  setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
+  handleStartGame: () => void;
+  handleStand: () => void;
+  showHiddenDealerCard: boolean;
+  // setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
   dealerDrawnCards: DrawnCards;
   playerDrawnCards: DrawnCards;
-  consequentDrawCardCount: number;
+  drawCardCount: number;
   playerDrawsOneCard: () => void;
 };
