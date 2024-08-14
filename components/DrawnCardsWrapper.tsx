@@ -24,7 +24,7 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   );
 
   const DrawDeck = (
-    <div className="flex">
+    <div className="flex-1 flex">
       {cards.map((card, index) => {
         const hiddenDealerCard = player === "Dealer" && index === 0;
         const angle =
@@ -55,6 +55,7 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
     <section
       className={clsx(
         "w-full",
+        "min-h-48",
         "flex",
         "flex-col",
         "gap-4",

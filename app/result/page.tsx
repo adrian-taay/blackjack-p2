@@ -1,14 +1,18 @@
 "use client";
 
+import { BlackjackContext } from "@/context/BlackjackProvider";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
 function FinalScorePage() {
+  const { playerBank, totalGames } = useContext(BlackjackContext);
+  const cashWon = playerBank - 5000;
+
   const FinalResults = {
-    cash_won: `Php ${200}`,
-    hands_won: 3,
-    final_balance: `Php ${8000}`,
-    final_outcome: "Win",
+    cash_won: `Php ${cashWon}`,
+    total_games: totalGames,
+    final_balance: `Php ${playerBank}`,
+    final_outcome: cashWon >= 0 ? "You Win!" : "House Wins!",
   };
 
   const displayFinalResults = Object.entries(FinalResults).map(
@@ -24,7 +28,7 @@ function FinalScorePage() {
     <main className="h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#6ea44f] via-[#5b8b46] to-[#1e4d07]">
       <section className="w-1/4 bg-white p-8 rounded-lg shadow-lg">
         <div className="text-center text-xl font-bold mb-4">
-          {FinalResults.final_outcome === "Win" ? "You Win!" : "House Wins!"}
+          {FinalResults.final_outcome}
         </div>
         {displayFinalResults}
         <Link

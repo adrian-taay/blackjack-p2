@@ -31,13 +31,6 @@ function PlayerControls() {
     action: handleStand,
   };
 
-  const DealBtn: Btn = {
-    btnIcon: <Handshake />,
-    btnName: "Deal",
-    color: "bg-neutral-700",
-    // action: "",
-  };
-
   return (
     <div className="flex flex-col items-center gap-6 my-10">
       <div className="flex justify-center items-center gap-8">

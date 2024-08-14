@@ -2,12 +2,15 @@
 
 import clsx from "clsx";
 import { Btn } from "@/types";
+import { useContext } from "react";
+import { BlackjackContext } from "@/context/BlackjackProvider";
 
 function Button({ settings }: { settings: Btn }) {
+  const { autoDraw } = useContext(BlackjackContext);
   const { btnIcon, btnName, color, action } = settings;
 
   return (
-    <div
+    <button
       className={clsx(
         "flex",
         "flex-col",
@@ -15,11 +18,11 @@ function Button({ settings }: { settings: Btn }) {
         "justify-center",
         "items-center",
         "gap-1",
-        color,
+        autoDraw ? "bg-neutral-300" : color,
+        autoDraw ? "cursor-default" : "cursor-pointer",
         "px-2",
         "lg:px-8",
         "py-2",
-        "cursor-pointer",
         "text-xs",
         "text-center",
         "text-white",
@@ -28,10 +31,11 @@ function Button({ settings }: { settings: Btn }) {
         "shadow-lg"
       )}
       onClick={action}
+      disabled={autoDraw}
     >
       <span>{btnIcon}</span>
       <span>{btnName}</span>
-    </div>
+    </button>
   );
 }
 

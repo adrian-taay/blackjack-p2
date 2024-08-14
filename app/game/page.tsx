@@ -19,7 +19,7 @@ export default function GamePage() {
       <PlayerControls />
       <DrawnCardsWrapper drawnCards={playerDrawnCards} />
       <DealWindow />
-      {/* <DealResult /> */}
+      <DealResult />
       <PlayerBalance />
     </main>
   );

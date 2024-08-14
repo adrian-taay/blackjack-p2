@@ -49,7 +49,7 @@ export function handleShuffleDeck(array: Card[]): Card[] {
   return array;
 }
 
-const deckOfCards: Card[] = suits
+export const deckOfCards: Card[] = suits
   .map((suit) => {
     const deck = [];
 

@@ -24,7 +24,7 @@ export type Card = {
 };
 
 export type DrawnCards = {
-  player: "Dealer" | "You";
+  player?: "Dealer" | "You";
   numberOfCards: number;
   sumOfCards: number;
   cards: Card[];
@@ -44,18 +44,31 @@ export type Btn = {
   action?: () => void;
 };
 
+export type DealResult = {
+  result: string;
+  earnings: number;
+  newBalance: number;
+};
+
 export type ContextSettings = {
   playerBank: number;
   playerBet: number;
   setPlayerBet: React.Dispatch<React.SetStateAction<number>>;
+  totalGames: number;
+  showDealWindow: boolean;
+  setShowDealWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  showDealResult: boolean;
+  setShowDealResult: React.Dispatch<React.SetStateAction<boolean>>;
   gameDeck: Card[];
   setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
   handleStartGame: () => void;
   handleStand: () => void;
+  handleRestartGame: () => void;
   showHiddenDealerCard: boolean;
-  // setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
   dealerDrawnCards: DrawnCards;
   playerDrawnCards: DrawnCards;
   drawCardCount: number;
   playerDrawsOneCard: () => void;
+  dealResult: DealResult;
+  autoDraw: boolean;
 };

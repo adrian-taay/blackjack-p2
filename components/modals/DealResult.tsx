@@ -11,35 +11,54 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { BlackjackContext } from "@/context/BlackjackProvider";
+import Link from "next/link";
+import { useContext } from "react";
+import { buttonVariants } from "../ui/button";
 
 function DealResult() {
+  const {
+    dealResult: { result, earnings, newBalance },
+    showDealResult,
+    setShowDealResult,
+    handleRestartGame,
+  } = useContext(BlackjackContext);
+
   const earningsLoss = (
     <span className="flex flex-col items-center gap-2">
       <span>Earnings / Loss</span>
-      <span className="font-bold text-lg">Php 1,000</span>
+      <span className="font-bold text-lg">Php {earnings}</span>
     </span>
   );
 
-  const newBalance = (
+  const newBalanceWrapper = (
     <span className="flex flex-col items-center gap-2">
       <span>Your New Balance</span>
-      <span className="font-bold text-lg">Php 11,000</span>
+      <span className="font-bold text-lg">Php {newBalance}</span>
     </span>
   );
   return (
-    <AlertDialog>
+    <AlertDialog open={showDealResult} onOpenChange={setShowDealResult}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-center">You Won!</AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col items-center my-8 gap-4 text-neutral-800">
+          <AlertDialogTitle className="text-center mb-6">
+            {result}
+          </AlertDialogTitle>
+          <AlertDialogDescription className="flex flex-col items-center gap-4 text-neutral-800">
             {earningsLoss}
-            {newBalance}
+            {newBalanceWrapper}
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Quit</AlertDialogCancel>
-          <AlertDialogAction>Make Another Deal</AlertDialogAction>
+        <AlertDialogFooter className="mt-6">
+          <AlertDialogCancel
+            className={buttonVariants({ variant: "destructive" })}
+          >
+            <Link href={"/result"}>Cashout</Link>
+          </AlertDialogCancel>
+          <AlertDialogAction onClick={handleRestartGame}>
+            Make Another Deal
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
