@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { BlackjackContext } from "@/context/BlackjackProvider";
 
 function Button({ settings }: { settings: Btn }) {
-  const { autoDraw } = useContext(BlackjackContext);
+  const { autoDraw, pauseGame } = useContext(BlackjackContext);
   const { btnIcon, btnName, color, action } = settings;
 
   return (
@@ -18,8 +18,8 @@ function Button({ settings }: { settings: Btn }) {
         "justify-center",
         "items-center",
         "gap-1",
-        autoDraw ? "bg-neutral-300" : color,
-        autoDraw ? "cursor-default" : "cursor-pointer",
+        autoDraw || pauseGame ? "bg-neutral-300" : color,
+        autoDraw || pauseGame ? "cursor-default" : "cursor-pointer",
         "px-2",
         "lg:px-8",
         "py-2",
@@ -31,7 +31,7 @@ function Button({ settings }: { settings: Btn }) {
         "shadow-lg"
       )}
       onClick={action}
-      disabled={autoDraw}
+      disabled={autoDraw || pauseGame}
     >
       <span>{btnIcon}</span>
       <span>{btnName}</span>

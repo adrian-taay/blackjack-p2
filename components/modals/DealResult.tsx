@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   AlertDialog,
@@ -10,11 +10,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { BlackjackContext } from '@/context/BlackjackProvider';
-import Link from 'next/link';
-import { useContext } from 'react';
-import { buttonVariants } from '../ui/button';
+} from "@/components/ui/alert-dialog";
+import { BlackjackContext } from "@/context/BlackjackProvider";
+import Link from "next/link";
+import { useContext } from "react";
+import { buttonVariants } from "../ui/button";
 
 function DealResult() {
   const {
@@ -38,10 +38,17 @@ function DealResult() {
       <span className="font-bold text-lg">Php {newBalance}</span>
     </span>
   );
+
+  function handleCloseWindow() {
+    if (showDealResult) {
+      return;
+    }
+
+    setShowDealResult(false);
+  }
+
   return (
-    <AlertDialog
-      open={showDealResult}
-      onOpenChange={setShowDealResult}>
+    <AlertDialog open={showDealResult} onOpenChange={handleCloseWindow}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -55,12 +62,14 @@ function DealResult() {
         </AlertDialogHeader>
         <AlertDialogFooter className="mt-6">
           <AlertDialogCancel
-            className={buttonVariants({ variant: 'destructive' })}>
-            <Link href={'/result'}>Cashout</Link>
+            className={buttonVariants({ variant: "destructive" })}
+          >
+            <Link href={"/result"}>Cashout</Link>
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleRestartGame}
-            disabled={playerBank < 5}>
+            disabled={playerBank < 5}
+          >
             Make Another Deal
           </AlertDialogAction>
         </AlertDialogFooter>

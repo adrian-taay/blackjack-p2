@@ -22,13 +22,23 @@ function DealWindow() {
     showDealWindow,
     setShowDealWindow,
     playerBank,
+    playerBet,
+    startGame,
     handleStartGame,
     totalGames,
   } = useContext(BlackjackContext);
   const router = useRouter();
 
+  function handleCloseWindow() {
+    if (!startGame) {
+      return;
+    }
+
+    setShowDealWindow(false);
+  }
+
   return (
-    <Dialog open={showDealWindow} onOpenChange={() => setShowDealWindow(false)}>
+    <Dialog open={showDealWindow} onOpenChange={handleCloseWindow}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col text-center">
@@ -50,6 +60,7 @@ function DealWindow() {
           <Button
             className="flex gap-2 bg-neutral-700"
             onClick={handleStartGame}
+            disabled={playerBet < 1}
           >
             <Handshake size={16} />
             <span>Deal</span>

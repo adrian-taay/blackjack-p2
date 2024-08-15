@@ -2,11 +2,18 @@
 
 import { BlackjackContext } from "@/context/BlackjackProvider";
 import Link from "next/link";
-import React, { useContext } from "react";
+import { redirect } from "next/navigation";
+import React, { useContext, useLayoutEffect } from "react";
 
 function FinalScorePage() {
   const { playerBank, totalGames } = useContext(BlackjackContext);
   const cashWon = playerBank - 5000;
+
+  useLayoutEffect(() => {
+    if (totalGames < 1) {
+      redirect("/");
+    }
+  }, [totalGames]);
 
   const FinalResults = {
     cash_won: `Php ${cashWon}`,
@@ -31,12 +38,12 @@ function FinalScorePage() {
           {FinalResults.final_outcome}
         </div>
         {displayFinalResults}
-        <Link
-          href={"/"}
+        <span
           className="w-48 mt-8 mx-auto flex justify-center items-center bg-yellow-500 hover:bg-yellow-400 px-8 py-2 border border-white rounded-lg font-bold text-white shadow-lg"
+          onClick={() => window.location.reload()}
         >
           Quit
-        </Link>
+        </span>
       </section>
     </main>
   );

@@ -55,12 +55,15 @@ export type ContextSettings = {
   playerBet: number;
   setPlayerBet: React.Dispatch<React.SetStateAction<number>>;
   totalGames: number;
+  setTotalGames: React.Dispatch<React.SetStateAction<number>>;
   showDealWindow: boolean;
   setShowDealWindow: React.Dispatch<React.SetStateAction<boolean>>;
   showDealResult: boolean;
   setShowDealResult: React.Dispatch<React.SetStateAction<boolean>>;
   gameDeck: Card[];
   setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
+  startGame: boolean;
+  pauseGame: boolean;
   handleStartGame: () => void;
   handleStand: () => void;
   handleRestartGame: () => void;
