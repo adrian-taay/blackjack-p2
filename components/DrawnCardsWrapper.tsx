@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { BlackjackContext } from "@/context/BlackjackProvider";
-import CardWrapper from "./CardWrapper";
-import { DrawnCards } from "@/types";
-import clsx from "clsx";
-import { useContext } from "react";
+import { BlackjackContext } from '@/context/BlackjackProvider';
+import CardWrapper from './CardWrapper';
+import { DrawnCards } from '@/types';
+import clsx from 'clsx';
+import { useContext } from 'react';
 
 function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   const { showHiddenDealerCard } = useContext(BlackjackContext);
@@ -12,9 +12,9 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
 
   const CardSum = (
     <div className="flex gap-2 items-center text-white">
-      <span>{player}:</span>
+      <span>{player && `${player}:`}</span>
       <span>
-        {player === "You"
+        {player === 'You'
           ? sumOfCards
           : showHiddenDealerCard
           ? sumOfCards
@@ -26,9 +26,9 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   const DrawDeck = (
     <div className="flex-1 flex">
       {cards.map((card, index) => {
-        const hiddenDealerCard = player === "Dealer" && index === 0;
+        const hiddenDealerCard = player === 'Dealer' && index === 0;
         const angle =
-          (index - (numberOfCards - 1) / 2) * (player === "You" ? 5 : -5);
+          (index - (numberOfCards - 1) / 2) * (player === 'You' ? 5 : -5);
 
         return (
           <div
@@ -37,9 +37,8 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
               zIndex: index,
               transform: `rotate(${angle}deg)`,
               transformOrigin:
-                player === "You" ? "bottom center" : "top center",
-            }}
-          >
+                player === 'You' ? 'bottom center' : 'top center',
+            }}>
             <CardWrapper
               details={
                 !hiddenDealerCard ? card : showHiddenDealerCard ? card : null
@@ -54,15 +53,14 @@ function DrawnCardsWrapper({ drawnCards }: { drawnCards: DrawnCards }) {
   return (
     <section
       className={clsx(
-        "w-full",
-        "min-h-48",
-        "flex",
-        "flex-col",
-        "gap-4",
-        "items-center",
-        player === "Dealer" && "flex-col-reverse"
-      )}
-    >
+        'w-full',
+        'min-h-48',
+        'flex',
+        'flex-col',
+        'gap-4',
+        'items-center',
+        player === 'Dealer' && 'flex-col-reverse'
+      )}>
       {DrawDeck}
       {CardSum}
     </section>

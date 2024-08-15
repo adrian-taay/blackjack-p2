@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Card, ContextSettings, DealResult, DrawnCards } from "@/types";
-import { createContext, useEffect, useState } from "react";
+import { Card, ContextSettings, DealResult, DrawnCards } from '@/types';
+import { createContext, useEffect, useState } from 'react';
 import {
   deckOfCards,
   handleShuffleDeck,
   shuffledDeckOfCards,
-} from "@/context/deckOfCards";
+} from '@/utils/DeckOfCards';
 // import { HeartIcon } from "lucide-react";
 
 export const BlackjackContext = createContext({} as ContextSettings);
@@ -296,6 +296,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
   const handleStartGame = (): void => {
     setShowDealWindow(false);
     setStartGame(true);
+    setPauseGame(false);
     setAutoDraw(true);
   };
 
@@ -307,11 +308,10 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleRestartGame = (): void => {
-    setPlayerBank((pb) => pb + dealResult.earnings);
+    setPlayerBank(pb => pb + dealResult.earnings);
     setPlayerBet(0);
     setGameDeck(handleShuffleDeck(deckOfCards));
     setDrawCardCount(0);
-    setTotalGames((g) => g + 1);
 
     setShowDealResult(false);
     setStartGame(false);
@@ -335,11 +335,11 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
       if (drawCardCount >= 4) {
         setAutoDraw(false);
         checkInitialBlackjack();
-        return console.log("Initial draw complete");
+        return console.log('Initial draw complete');
       }
     }
 
-    if (dealerDrawnCards.sumOfCards >= 17) {
+    if (drawCardCount > 4 && dealerDrawnCards.sumOfCards >= 17) {
       compareCards();
       return setAutoDraw(false);
     }
@@ -353,7 +353,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     }
 
     if (finishPlayerTurn && dealerDrawnCards.sumOfCards > 21) {
-      populateDealResult("win");
+      populateDealResult('win');
     }
 
     const delay = 750;
@@ -378,66 +378,81 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
   function playerDrawsOneCard(): void {
     const newCard = gameDeck[drawCardCount];
 
-    setPlayerDrawnCards((p) => {
+    setPlayerDrawnCards(p => {
       let updatedCards = [...p.cards, newCard];
       let updatedSum = p.sumOfCards + newCard.value;
 
       if (p.sumOfCards + newCard.value > 21) {
-        updatedCards = updatedCards.map((card) =>
-          card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
+        updatedCards = updatedCards.map(card =>
+          card.name === 'A' && card.value === 11 ? { ...card, value: 1 } : card
         );
 
         updatedSum = updatedCards.reduce((a, b) => a + b.value, 0);
       }
 
       return {
-        player: "You",
+        player: 'You',
         numberOfCards: p.numberOfCards + 1,
         sumOfCards: updatedSum,
         cards: updatedCards,
       };
     });
-    setDrawCardCount((c) => c + 1);
+
+    setDrawCardCount(c => c + 1);
   }
+
+  useEffect(() => {
+    if (playerDrawnCards.sumOfCards > 21) {
+      setShowHiddenDealerCard(true);
+      populateDealResult('lose');
+    }
+  }, [playerDrawnCards]);
+
+  // useEffect(() => {
+  //   if (dealerDrawnCards.sumOfCards > 21) {
+  //     setShowHiddenDealerCard(true);
+  //     populateDealResult('win');
+  //   }
+  // }, [dealerDrawnCards]);
 
   function dealerDrawsOneCard(): void {
     const newCard = gameDeck[drawCardCount];
 
-    setDealerDrawnCards((d) => {
+    setDealerDrawnCards(d => {
       let updatedCards = [...d.cards, newCard];
       let updatedSum = d.sumOfCards + newCard.value;
 
       if (d.sumOfCards + newCard.value > 17) {
-        updatedCards = updatedCards.map((card) =>
-          card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
+        updatedCards = updatedCards.map(card =>
+          card.name === 'A' && card.value === 11 ? { ...card, value: 1 } : card
         );
 
         updatedSum = updatedCards.reduce((a, b) => a + b.value, 0);
       }
 
       return {
-        player: "Dealer",
+        player: 'Dealer',
         numberOfCards: d.numberOfCards + 1,
         sumOfCards: updatedSum,
         cards: updatedCards,
       };
     });
-    setDrawCardCount((c) => c + 1);
+    setDrawCardCount(c => c + 1);
   }
 
   function compareCards(): void {
     if (playerDrawnCards.sumOfCards > dealerDrawnCards.sumOfCards) {
-      populateDealResult("win");
+      populateDealResult('win');
 
-      console.log("You Win!");
+      console.log('You Win!');
     } else if (playerDrawnCards.sumOfCards === dealerDrawnCards.sumOfCards) {
-      populateDealResult("tie");
+      populateDealResult('tie');
 
       console.log("It's a tie! Deal has been refunded.");
     } else {
-      populateDealResult("lose");
+      populateDealResult('lose');
 
-      console.log("Dealer Wins!");
+      console.log('Dealer Wins!');
     }
   }
 
@@ -446,28 +461,30 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
 
     if (playerBlackjack) {
       if (dealerDrawnCards.sumOfCards === 21) {
-        populateDealResult("tie");
+        setShowHiddenDealerCard(true);
+        populateDealResult('tie');
 
         return console.log("It's a tie! Bet has been refunded.");
       }
 
-      populateDealResult("win");
+      setShowHiddenDealerCard(true);
+      populateDealResult('win');
 
-      return console.log("You win!");
+      return console.log('You win!');
     }
   }
 
-  function populateDealResult(result: "win" | "lose" | "tie"): void {
-    let resultType = "";
+  function populateDealResult(result: 'win' | 'lose' | 'tie'): void {
+    let resultType = '';
     let multiplier = 0;
 
     switch (result) {
-      case "win":
-        resultType = "You Win!";
+      case 'win':
+        resultType = 'You Win!';
         multiplier = 1;
         break;
-      case "lose":
-        resultType = "Dealer Wins!";
+      case 'lose':
+        resultType = 'Dealer Wins!';
         multiplier = -1;
         break;
       default:
@@ -476,6 +493,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
         break;
     }
 
+    setTotalGames(g => g + 1);
     setDealResult({
       result: resultType,
       earnings: playerBet * multiplier,
@@ -490,6 +508,8 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
 
     return () => clearTimeout(timer);
   }, [pauseGame]);
+
+  console.log('dealer cards:', dealerDrawnCards);
 
   const settings: ContextSettings = {
     playerBank,
