@@ -41,7 +41,7 @@ export type Btn = {
   btnIcon: React.ReactElement;
   btnName: string;
   color: string;
-  action?: () => void;
+  action?: (args?: any) => void;
 };
 
 export type DealResult = {
@@ -70,8 +70,12 @@ export type ContextSettings = {
   showHiddenDealerCard: boolean;
   dealerDrawnCards: DrawnCards;
   playerDrawnCards: DrawnCards;
+  setPlayerDrawnCards: React.Dispatch<React.SetStateAction<DrawnCards>>;
   drawCardCount: number;
-  playerDrawsOneCard: () => void;
+  addOneCard: (
+    player: "You" | "Dealer",
+    cb: React.Dispatch<React.SetStateAction<DrawnCards>>
+  ) => void;
   dealResult: DealResult;
   autoDraw: boolean;
 };
