@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useContext, useEffect, useLayoutEffect } from 'react';
-import { BlackjackContext } from '@/context/BlackjackProvider';
-import Header from '@/components/Header';
-import DrawnCardsWrapper from '@/components/DrawnCardsWrapper';
-import PlayerControls from '@/components/PlayerControls';
-import PlayerBalance from '@/components/PlayerBalance';
-import DealWindow from '@/components/modals/DealWindow';
-import DealResult from '@/components/modals/DealResult';
+import { useContext, useEffect } from "react";
+import { BlackjackContext } from "@/context/BlackjackProvider";
+import Header from "@/components/Header";
+import DrawnCardsWrapper from "@/components/DrawnCardsWrapper";
+import PlayerControls from "@/components/PlayerControls";
+import PlayerBalance from "@/components/PlayerBalance";
+import DealWindow from "@/components/modals/DealWindow";
+import DealResult from "@/components/modals/DealResult";
 
 export default function GamePage() {
   const { dealerDrawnCards, playerDrawnCards, setShowDealWindow, startGame } =

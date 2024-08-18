@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Dialog,
@@ -8,39 +8,43 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
-import React, { useContext } from 'react';
-import PlayerFunds from '../PlayerFunds';
-import { Handshake } from 'lucide-react';
-import { BlackjackContext } from '@/context/BlackjackProvider';
-import { Button, buttonVariants } from '../ui/button';
-import { useRouter } from 'next/navigation';
+import React, { useContext } from "react";
+import PlayerFunds from "../PlayerFunds";
+import { Handshake } from "lucide-react";
+import { BlackjackContext } from "@/context/BlackjackProvider";
+import { Button, buttonVariants } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { usePlayerStats } from "@/context/PlayerStatsProvider";
+import { useGameControls } from "@/context/GameControlsProvider";
 
 function DealWindow() {
-  const {
-    showDealWindow,
-    setShowDealWindow,
-    playerBank,
-    playerBet,
-    startGame,
-    handleStartGame,
-    totalGames,
-  } = useContext(BlackjackContext);
+  // const {
+  //   showDealWindow,
+  //   setShowDealWindow,
+  //   playerBank,
+  //   playerBet,
+  //   startGame,
+  //   handleStartGame,
+  //   totalGames,
+  // } = useContext(BlackjackContext);
+
+  const { playerBank, playerBet, totalGames } = usePlayerStats();
+  const { showDealWindow, setShowDealWindow, startGame, handleStartGame } =
+    useGameControls();
+
   const router = useRouter();
 
   function handleCloseWindow() {
     if (!startGame) {
       return;
     }
-
     setShowDealWindow(false);
   }
 
   return (
-    <Dialog
-      open={showDealWindow}
-      onOpenChange={handleCloseWindow}>
+    <Dialog open={showDealWindow} onOpenChange={handleCloseWindow}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex flex-col text-center">
@@ -54,14 +58,16 @@ function DealWindow() {
         <DialogFooter className="gap-2">
           <Button
             disabled={totalGames === 0}
-            className={buttonVariants({ variant: 'destructive' })}
-            onClick={() => router.push('/result')}>
+            className={buttonVariants({ variant: "destructive" })}
+            onClick={() => router.push("/result")}
+          >
             Cashout
           </Button>
           <Button
             className="flex gap-2 bg-neutral-700"
             onClick={handleStartGame}
-            disabled={playerBet < 1}>
+            disabled={playerBet < 1}
+          >
             <Handshake size={16} />
             <span>Deal</span>
           </Button>

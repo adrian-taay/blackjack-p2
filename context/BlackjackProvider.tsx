@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, ContextSettings, DealResult, DrawnCards } from "@/types";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import {
   deckOfCards,
   handleShuffleDeck,
@@ -28,56 +28,66 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     setTotalGames,
   } = usePlayerStats();
 
-  const [showDealWindow, setShowDealWindow] = useState(false);
-  const [showDealResult, setShowDealResult] = useState(false);
+  // const [showDealWindow, setShowDealWindow] = useState(false);
+  // const [showDealResult, setShowDealResult] = useState(false);
   const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
-  const [startGame, setStartGame] = useState(false);
-  const [pauseGame, setPauseGame] = useState(false);
-  const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
   const [drawCardCount, setDrawCardCount] = useState(0);
-  const [playerTurn, setPlayerTurn] = useState(false);
-  const [finishPlayerTurn, setFinishPlayerTurn] = useState(false);
-  const [autoDraw, setAutoDraw] = useState(false);
-  const [dealResult, setDealResult] = useState<DealResult>({} as DealResult);
+  // const [startGame, setStartGame] = useState(false);
+  // const [pauseGame, setPauseGame] = useState(false);
+  // const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
+  // const [playerTurn, setPlayerTurn] = useState(false);
+  // const [finishPlayerTurn, setFinishPlayerTurn] = useState(false);
+  // const [autoDraw, setAutoDraw] = useState(false);
+  // const [dealResult, setDealResult] = useState<DealResult>({} as DealResult);
 
+  // ***************************************************
+
+  // const shuffledDeckOfCards = useMemo(() => {
+  //   if (drawCardCount !== 0) {
+  //     return;
+  //   }
+  //   handleShuffleDeck(deckOfCards);
+  // }, [drawCardCount]);
+
+  // ***************************************************
   const [playerDrawnCards, setPlayerDrawnCards] =
     useState<DrawnCards>(initialState);
   const [dealerDrawnCards, setDealerDrawnCards] =
     useState<DrawnCards>(initialState);
 
-  const handleStartGame = (): void => {
-    setShowDealWindow(false);
-    setStartGame(true);
-    setPauseGame(false);
-    setAutoDraw(true);
-  };
+  // const handleStartGame = (): void => {
+  //   setShowDealWindow(false);
+  //   setStartGame(true);
+  //   setPauseGame(false);
+  //   setAutoDraw(true);
+  // };
 
-  const handleStand = (): void => {
-    setFinishPlayerTurn(true);
-    setPlayerTurn(false);
-    setShowHiddenDealerCard(true);
-    setAutoDraw(true);
-  };
+  // const handleStand = (): void => {
+  //   setFinishPlayerTurn(true);
+  //   setPlayerTurn(false);
+  //   setShowHiddenDealerCard(true);
+  //   setAutoDraw(true);
+  // };
 
-  const handleRestartGame = (): void => {
-    setPlayerBank((pb) => pb + dealResult.earnings);
-    setPlayerBet(0);
-    setGameDeck(handleShuffleDeck(deckOfCards));
-    setDrawCardCount(0);
+  // const handleRestartGame = (): void => {
+  //   setPlayerBank((pb) => pb + dealResult.earnings);
+  //   setPlayerBet(0);
+  //   setGameDeck(handleShuffleDeck(deckOfCards));
+  //   setDrawCardCount(0);
 
-    setShowDealResult(false);
-    setStartGame(false);
+  //   setShowDealResult(false);
+  //   setStartGame(false);
 
-    setShowHiddenDealerCard(false);
-    setPlayerTurn(false);
-    setFinishPlayerTurn(false);
-    setAutoDraw(false);
-    setDealResult({} as DealResult);
-    setPlayerDrawnCards(initialState);
-    setDealerDrawnCards(initialState);
+  //   setShowHiddenDealerCard(false);
+  //   setPlayerTurn(false);
+  //   setFinishPlayerTurn(false);
+  //   setAutoDraw(false);
+  //   setDealResult({} as DealResult);
+  //   setPlayerDrawnCards(initialState);
+  //   setDealerDrawnCards(initialState);
 
-    setShowDealWindow(true);
-  };
+  //   setShowDealWindow(true);
+  // };
 
   useEffect(() => {
     if (!startGame) return;

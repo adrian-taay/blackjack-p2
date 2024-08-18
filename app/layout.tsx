@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import BlackjackProvider from "@/context/BlackjackProvider";
 import PlayerStatsProvider from "@/context/PlayerStatsProvider";
+import GameControlsProvider from "@/context/GameControlsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <PlayerStatsProvider>
-        <BlackjackProvider>
-          <body className={inter.className}>{children}</body>
-        </BlackjackProvider>
+        <GameControlsProvider>
+          <BlackjackProvider>
+            <body className={inter.className}>{children}</body>
+          </BlackjackProvider>
+        </GameControlsProvider>
       </PlayerStatsProvider>
     </html>
   );
