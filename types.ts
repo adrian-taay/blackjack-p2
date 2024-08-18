@@ -72,10 +72,6 @@ export type ContextSettings = {
   playerDrawnCards: DrawnCards;
   setPlayerDrawnCards: React.Dispatch<React.SetStateAction<DrawnCards>>;
   drawCardCount: number;
-  addOneCard: (
-    player: "You" | "Dealer",
-    cb: React.Dispatch<React.SetStateAction<DrawnCards>>
-  ) => void;
   dealResult: DealResult;
   autoDraw: boolean;
 };
