@@ -8,10 +8,11 @@ import PlayerControls from "@/components/PlayerControls";
 import PlayerBalance from "@/components/PlayerBalance";
 import DealWindow from "@/components/modals/DealWindow";
 import DealResult from "@/components/modals/DealResult";
+import { useGameControls } from "@/context/GameControlsProvider";
 
 export default function GamePage() {
-  const { dealerDrawnCards, playerDrawnCards, setShowDealWindow, startGame } =
-    useContext(BlackjackContext);
+  const { startGame, setShowDealWindow } = useGameControls();
+  const { dealerDrawnCards, playerDrawnCards } = useContext(BlackjackContext);
 
   useEffect(() => {
     if (startGame) return;

@@ -1,17 +1,7 @@
 "use client";
 
+import { PlayerStatsContextTypes } from "@/types";
 import React, { createContext, useContext, useState } from "react";
-
-type PlayerStatsContextTypes = {
-  playerBank: number;
-  setPlayerBank: React.Dispatch<React.SetStateAction<number>>;
-  playerBet: number;
-  setPlayerBet: React.Dispatch<React.SetStateAction<number>>;
-  totalGames: number;
-  setTotalGames: React.Dispatch<React.SetStateAction<number>>;
-  addToBet: (chipValue: number) => void;
-  clearBet: () => void;
-};
 
 const PlayerStatsContext = createContext({} as PlayerStatsContextTypes);
 

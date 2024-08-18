@@ -1,22 +1,23 @@
 import { DrawnCards } from "@/types";
-import { populateDealResult } from "./populateDealResult";
 
 export function compareCards(
-  playerDrawnCards: DrawnCards,
-  dealerDrawnCards: DrawnCards
+  state: boolean,
+  plCards: DrawnCards,
+  dlCards: DrawnCards,
+  callback: (result: "win" | "lose" | "tie") => void
 ): void {
-  if (dealerDrawnCards.sumOfCards > 21) {
-    populateDealResult("win");
-  } else if (playerDrawnCards.sumOfCards > dealerDrawnCards.sumOfCards) {
-    populateDealResult("win");
+  if (state && dlCards.sumOfCards > 21) {
+    callback("win");
+  } else if (plCards.sumOfCards > dlCards.sumOfCards) {
+    callback("win");
 
     console.log("You Win!");
-  } else if (playerDrawnCards.sumOfCards === dealerDrawnCards.sumOfCards) {
-    populateDealResult("tie");
+  } else if (plCards.sumOfCards === dlCards.sumOfCards) {
+    callback("tie");
 
     console.log("It's a tie! Deal has been refunded.");
   } else {
-    populateDealResult("lose");
+    callback("lose");
 
     console.log("Dealer Wins!");
   }

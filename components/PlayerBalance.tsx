@@ -1,10 +1,9 @@
 "use client";
 
-import { BlackjackContext } from "@/context/BlackjackProvider";
-import { useContext } from "react";
+import { usePlayerStats } from "@/context/PlayerStatsProvider";
 
 function PlayerBalance() {
-  const { playerBank, playerBet } = useContext(BlackjackContext);
+  const { playerBank, playerBet } = usePlayerStats();
 
   return (
     <div className="flex justify-center">

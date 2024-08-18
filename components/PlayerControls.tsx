@@ -5,19 +5,13 @@ import Button from "./Button";
 import { Btn } from "@/types";
 import { CirclePlus, ThumbsUp } from "lucide-react";
 import { BlackjackContext } from "@/context/BlackjackProvider";
-import { addOneCard } from "@/utils/addOneCard";
+import { usePlayerStats } from "@/context/PlayerStatsProvider";
+import { useGameControls } from "@/context/GameControlsProvider";
 
 function PlayerControls() {
-  const {
-    playerBet,
-    handleStartGame,
-    handleStand,
-    setPlayerDrawnCards,
-    gameDeck,
-    drawCardCount,
-  } = useContext(BlackjackContext);
-
-  const newCard = gameDeck[drawCardCount];
+  const { playerBet } = usePlayerStats();
+  const { handleStartGame } = useGameControls();
+  const { handleHit, handleFinishTurn } = useContext(BlackjackContext);
 
   const BetAmount = (
     <div className="flex flex-col items-center bg-white/20 px-6 py-2 rounded-lg text-white">
@@ -30,14 +24,14 @@ function PlayerControls() {
     btnIcon: <CirclePlus />,
     btnName: "Hit",
     color: "bg-yellow-500",
-    action: () => addOneCard("You", setPlayerDrawnCards, newCard),
+    action: handleHit,
   };
 
   const StandBtn: Btn = {
     btnIcon: <ThumbsUp />,
     btnName: "Stand",
     color: "bg-yellow-500",
-    action: handleStand,
+    action: handleFinishTurn,
   };
 
   return (

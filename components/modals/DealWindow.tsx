@@ -2,7 +2,6 @@
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -10,26 +9,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import React, { useContext } from "react";
 import PlayerFunds from "../PlayerFunds";
 import { Handshake } from "lucide-react";
-import { BlackjackContext } from "@/context/BlackjackProvider";
 import { Button, buttonVariants } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { usePlayerStats } from "@/context/PlayerStatsProvider";
 import { useGameControls } from "@/context/GameControlsProvider";
 
 function DealWindow() {
-  // const {
-  //   showDealWindow,
-  //   setShowDealWindow,
-  //   playerBank,
-  //   playerBet,
-  //   startGame,
-  //   handleStartGame,
-  //   totalGames,
-  // } = useContext(BlackjackContext);
-
   const { playerBank, playerBet, totalGames } = usePlayerStats();
   const { showDealWindow, setShowDealWindow, startGame, handleStartGame } =
     useGameControls();

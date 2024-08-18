@@ -2,11 +2,10 @@
 
 import clsx from "clsx";
 import { Btn } from "@/types";
-import { useContext } from "react";
-import { BlackjackContext } from "@/context/BlackjackProvider";
+import { useGameControls } from "@/context/GameControlsProvider";
 
 function Button({ settings }: { settings: Btn }) {
-  const { autoDraw, pauseGame } = useContext(BlackjackContext);
+  const { autoDraw, pauseGame } = useGameControls();
   const { btnIcon, btnName, color, action } = settings;
 
   return (

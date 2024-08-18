@@ -11,19 +11,19 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { BlackjackContext } from "@/context/BlackjackProvider";
 import Link from "next/link";
-import { useContext } from "react";
 import { buttonVariants } from "../ui/button";
+import { useGameControls } from "@/context/GameControlsProvider";
+import { usePlayerStats } from "@/context/PlayerStatsProvider";
 
 function DealResult() {
+  const { playerBank } = usePlayerStats();
   const {
     dealResult: { result, earnings, newBalance },
-    showDealResult,
-    setShowDealResult,
-    playerBank,
+    showDealResultWindow,
+    setShowDealResultWindow,
     handleRestartGame,
-  } = useContext(BlackjackContext);
+  } = useGameControls();
 
   const earningsLoss = (
     <span className="flex flex-col items-center gap-2">
@@ -40,15 +40,15 @@ function DealResult() {
   );
 
   function handleCloseWindow() {
-    if (showDealResult) {
+    if (showDealResultWindow) {
       return;
     }
 
-    setShowDealResult(false);
+    setShowDealResultWindow(false);
   }
 
   return (
-    <AlertDialog open={showDealResult} onOpenChange={handleCloseWindow}>
+    <AlertDialog open={showDealResultWindow} onOpenChange={handleCloseWindow}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
