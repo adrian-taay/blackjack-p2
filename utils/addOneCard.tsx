@@ -7,9 +7,9 @@ export function addOneCard(
 ): void {
   cb((prev) => {
     let updatedCards = [...prev.cards, card];
-    let updatedSum = prev.sumOfCards + card.value;
+    let updatedSum = prev.sumOfCards + card?.value;
 
-    if (prev.sumOfCards + card.value > 21) {
+    if (updatedSum > 21) {
       updatedCards = updatedCards.map((card) =>
         card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
       );

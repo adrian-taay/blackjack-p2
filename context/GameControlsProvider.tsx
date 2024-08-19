@@ -11,7 +11,8 @@ export default function GameControlsProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { playerBank, playerBet, setTotalGames } = usePlayerStats();
+  const { playerBank, setPlayerBank, playerBet, setPlayerBet, setTotalGames } =
+    usePlayerStats();
   const [showDealWindow, setShowDealWindow] = useState(false);
   const [startGame, setStartGame] = useState(false);
   const [pauseGame, setPauseGame] = useState(false);
@@ -54,6 +55,11 @@ export default function GameControlsProvider({
         break;
     }
 
+    const earnings: number = playerBet * multiplier;
+
+    setPlayerBank((pb) => pb + earnings);
+    setPlayerBet(0);
+
     setTotalGames((g) => g + 1);
     setDealResult({
       result: resultType,
@@ -64,7 +70,7 @@ export default function GameControlsProvider({
 
   useEffect(() => {
     if (!pauseGame) return;
-    const timer = setTimeout(() => setShowDealResultWindow(true), 1000);
+    const timer = setTimeout(() => setShowDealResultWindow(true), 1500);
 
     return () => clearTimeout(timer);
   }, [pauseGame]);

@@ -49,7 +49,7 @@ function DealResult() {
 
   return (
     <AlertDialog open={showDealResultWindow} onOpenChange={handleCloseWindow}>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      {/* <AlertDialogTrigger>Open</AlertDialogTrigger> */}
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-center mb-6">

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, BlackjackLogicContextTypes, DrawnCards } from "@/types";
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   deckOfCards,
   handleShuffleDeck,
@@ -19,21 +19,15 @@ const initialState: DrawnCards = {
   cards: [],
 };
 
-// ***************************************************
-
-// const shuffledDeckOfCards = useMemo(() => {
-//   if (drawCardCount !== 0) {
-//     return;
-//   }
-//   handleShuffleDeck(deckOfCards);
-// }, [drawCardCount]);
-
-// ***************************************************
-
 function BlackjackProvider({ children }: { children: React.ReactNode }) {
-  const { startGame, autoDraw, setAutoDraw, populateDealResult } =
-    useGameControls();
-
+  const {
+    startGame,
+    pauseGame,
+    autoDraw,
+    setAutoDraw,
+    populateDealResult,
+    showDealResultWindow,
+  } = useGameControls();
   const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
   const [drawCardCount, setDrawCardCount] = useState(0);
   const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
@@ -86,6 +80,8 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
       if (playerDrawnCards.sumOfCards > 21) {
         setShowHiddenDealerCard(true);
         populateDealResult("lose");
+      } else if (playerDrawnCards.sumOfCards === 21) {
+        handleFinishTurn();
       }
     }
     checkPlayerCards();
@@ -95,6 +91,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     function checkDealerCards() {
       if (finishPlayerTurn && dealerDrawnCards.sumOfCards >= 17) {
+        console.log("checkDealerCars:");
         setAutoDraw(false);
 
         return compareCards(
@@ -107,7 +104,24 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     }
     checkDealerCards();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dealerDrawnCards]);
+  }, [finishPlayerTurn, dealerDrawnCards]);
+
+  useEffect(() => {
+    function resetGameStates() {
+      if (pauseGame && showDealResultWindow) {
+        setGameDeck(handleShuffleDeck(deckOfCards));
+        setPlayerDrawnCards(initialState);
+        setDealerDrawnCards(initialState);
+        setDrawCardCount(0);
+        setPlayerTurn(false);
+        setFinishPlayerTurn(false);
+        setShowHiddenDealerCard(false);
+      }
+
+      return;
+    }
+    resetGameStates();
+  }, [pauseGame, showDealResultWindow]);
 
   function drawInitialFourCards(): void {
     if (!finishPlayerTurn) {
@@ -125,6 +139,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
 
     if (playerBlackjack) {
       if (dealerDrawnCards.sumOfCards === 21) {
+        setAutoDraw(false);
         setShowHiddenDealerCard(true);
         populateDealResult("tie");
 

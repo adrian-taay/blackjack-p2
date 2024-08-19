@@ -11,9 +11,10 @@ function Button({ settings }: { settings: Btn }) {
   return (
     <button
       className={clsx(
+        "w-full",
         "flex",
-        "flex-col",
-        "lg:flex-row",
+        // "flex-col",
+        // "md:flex-row",
         "justify-center",
         "items-center",
         "gap-1",
