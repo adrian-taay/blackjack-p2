@@ -1,270 +1,17 @@
 "use client";
 
-import { Card, ContextSettings, DealResult, DrawnCards } from "@/types";
+import { Card, BlackjackLogicContextTypes, DrawnCards } from "@/types";
 import { createContext, useEffect, useState } from "react";
 import {
   deckOfCards,
   handleShuffleDeck,
   shuffledDeckOfCards,
 } from "@/utils/DeckOfCards";
-// import { HeartIcon } from "lucide-react";
+import { addOneCard } from "@/utils/addOneCard";
+import { useGameControls } from "./GameControlsProvider";
+import { compareCards } from "@/utils/compareCards";
 
-export const BlackjackContext = createContext({} as ContextSettings);
-
-// const temporaryDeck: Card[] = [
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "3",
-//     value: 3,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "3",
-//     value: 3,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "3",
-//     value: 3,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "A",
-//     value: 11,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "J",
-//     value: 10,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-//   {
-//     suit: "Heart",
-//     icon: <HeartIcon />,
-//     displayIcon: <HeartIcon />,
-//     name: "2",
-//     value: 2,
-//   },
-// ];
+export const BlackjackContext = createContext({} as BlackjackLogicContextTypes);
 
 const initialState: DrawnCards = {
   numberOfCards: 0,
@@ -273,63 +20,110 @@ const initialState: DrawnCards = {
 };
 
 function BlackjackProvider({ children }: { children: React.ReactNode }) {
-  const [playerBank, setPlayerBank] = useState(5000);
-  const [playerBet, setPlayerBet] = useState(0);
-  const [totalGames, setTotalGames] = useState(0);
-  const [showDealWindow, setShowDealWindow] = useState(false);
-  const [showDealResult, setShowDealResult] = useState(false);
+  const {
+    startGame,
+    pauseGame,
+    autoDraw,
+    setAutoDraw,
+    populateDealResult,
+    showDealResultWindow,
+  } = useGameControls();
   const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
-  const [startGame, setStartGame] = useState(false);
-  const [pauseGame, setPauseGame] = useState(false);
-  const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
   const [drawCardCount, setDrawCardCount] = useState(0);
+  const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
   const [playerTurn, setPlayerTurn] = useState(false);
   const [finishPlayerTurn, setFinishPlayerTurn] = useState(false);
-  const [autoDraw, setAutoDraw] = useState(false);
-  const [dealResult, setDealResult] = useState<DealResult>({} as DealResult);
-
   const [playerDrawnCards, setPlayerDrawnCards] =
     useState<DrawnCards>(initialState);
   const [dealerDrawnCards, setDealerDrawnCards] =
     useState<DrawnCards>(initialState);
 
-  const handleStartGame = (): void => {
-    setShowDealWindow(false);
-    setStartGame(true);
-    setPauseGame(false);
-    setAutoDraw(true);
+  const handleHit = (): void => {
+    addOneCard("You", setPlayerDrawnCards, gameDeck[drawCardCount]);
+    setDrawCardCount((c) => c + 1);
   };
 
-  const handleStand = (): void => {
+  const handleFinishTurn = (): void => {
     setFinishPlayerTurn(true);
     setPlayerTurn(false);
     setShowHiddenDealerCard(true);
     setAutoDraw(true);
   };
 
-  const handleRestartGame = (): void => {
-    setPlayerBank((pb) => pb + dealResult.earnings);
-    setPlayerBet(0);
-    setGameDeck(handleShuffleDeck(deckOfCards));
-    setDrawCardCount(0);
-
-    setShowDealResult(false);
-    setStartGame(false);
-
-    setShowHiddenDealerCard(false);
-    setPlayerTurn(false);
-    setFinishPlayerTurn(false);
-    setAutoDraw(false);
-    setDealResult({} as DealResult);
-    setPlayerDrawnCards(initialState);
-    setDealerDrawnCards(initialState);
-
-    setShowDealWindow(true);
-  };
-
   useEffect(() => {
     if (!startGame) return;
+    if (!autoDraw) return;
 
+    drawInitialFourCards();
+
+    function drawOneCard() {
+      const newCard = gameDeck[drawCardCount];
+
+      if (playerTurn) {
+        addOneCard("You", setPlayerDrawnCards, newCard);
+      } else {
+        addOneCard("Dealer", setDealerDrawnCards, newCard);
+      }
+
+      setDrawCardCount((cc) => cc + 1);
+    }
+
+    const delay = 750;
+    const timer = setTimeout(drawOneCard, delay);
+
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startGame, drawCardCount, playerTurn, autoDraw]);
+
+  useEffect(() => {
+    function checkPlayerCards() {
+      if (playerDrawnCards.sumOfCards > 21) {
+        setShowHiddenDealerCard(true);
+        populateDealResult("lose");
+      } else if (playerDrawnCards.sumOfCards === 21) {
+        handleFinishTurn();
+      }
+    }
+    checkPlayerCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playerDrawnCards]);
+
+  useEffect(() => {
+    function checkDealerCards() {
+      if (finishPlayerTurn && dealerDrawnCards.sumOfCards >= 17) {
+        console.log("checkDealerCars:");
+        setAutoDraw(false);
+
+        return compareCards(
+          finishPlayerTurn,
+          playerDrawnCards,
+          dealerDrawnCards,
+          populateDealResult
+        );
+      }
+    }
+    checkDealerCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finishPlayerTurn, dealerDrawnCards]);
+
+  useEffect(() => {
+    function resetGameStates() {
+      if (pauseGame && showDealResultWindow) {
+        setGameDeck(handleShuffleDeck(deckOfCards));
+        setPlayerDrawnCards(initialState);
+        setDealerDrawnCards(initialState);
+        setDrawCardCount(0);
+        setPlayerTurn(false);
+        setFinishPlayerTurn(false);
+        setShowHiddenDealerCard(false);
+      }
+
+      return;
+    }
+    resetGameStates();
+  }, [pauseGame, showDealResultWindow]);
+
+  function drawInitialFourCards(): void {
     if (!finishPlayerTurn) {
       if (drawCardCount >= 2) setPlayerTurn(true);
       if (drawCardCount >= 4) {
@@ -338,89 +132,6 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
         return console.log("Initial draw complete");
       }
     }
-
-    if (drawCardCount > 4 && dealerDrawnCards.sumOfCards >= 17) {
-      compareCards();
-      return setAutoDraw(false);
-    }
-
-    function drawCard() {
-      if (playerTurn) {
-        addOneCard("You", setPlayerDrawnCards);
-      } else {
-        addOneCard("Dealer", setDealerDrawnCards);
-      }
-    }
-
-    if (finishPlayerTurn && dealerDrawnCards.sumOfCards > 21) {
-      populateDealResult("win");
-    }
-
-    const delay = 750;
-    const timer = setTimeout(drawCard, delay);
-
-    return () => clearTimeout(timer);
-  }, [
-    gameDeck,
-    startGame,
-    drawCardCount,
-    playerTurn,
-    autoDraw,
-    finishPlayerTurn,
-  ]);
-
-  function addOneCard(
-    player: "You" | "Dealer",
-    cb: React.Dispatch<React.SetStateAction<DrawnCards>>
-  ): void {
-    const newCard = gameDeck[drawCardCount];
-
-    cb((prev) => {
-      let updatedCards = [...prev.cards, newCard];
-      let updatedSum = prev.sumOfCards + newCard.value;
-
-      if (prev.sumOfCards + newCard.value > 21) {
-        updatedCards = updatedCards.map((card) =>
-          card.name === "A" && card.value === 11 ? { ...card, value: 1 } : card
-        );
-
-        updatedSum = updatedCards.reduce((a, b) => a + b.value, 0);
-      }
-
-      return {
-        player: player,
-        numberOfCards: prev.numberOfCards + 1,
-        sumOfCards: updatedSum,
-        cards: updatedCards,
-      };
-    });
-
-    setDrawCardCount((cc) => cc + 1);
-  }
-
-  useEffect(() => {
-    if (playerDrawnCards.sumOfCards > 21) {
-      setShowHiddenDealerCard(true);
-      populateDealResult("lose");
-    }
-  }, [playerDrawnCards]);
-
-  function compareCards(): void {
-    if (dealerDrawnCards.sumOfCards > 21) {
-      populateDealResult("win");
-    } else if (playerDrawnCards.sumOfCards > dealerDrawnCards.sumOfCards) {
-      populateDealResult("win");
-
-      console.log("You Win!");
-    } else if (playerDrawnCards.sumOfCards === dealerDrawnCards.sumOfCards) {
-      populateDealResult("tie");
-
-      console.log("It's a tie! Deal has been refunded.");
-    } else {
-      populateDealResult("lose");
-
-      console.log("Dealer Wins!");
-    }
   }
 
   function checkInitialBlackjack(): void {
@@ -428,6 +139,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
 
     if (playerBlackjack) {
       if (dealerDrawnCards.sumOfCards === 21) {
+        setAutoDraw(false);
         setShowHiddenDealerCard(true);
         populateDealResult("tie");
 
@@ -441,67 +153,16 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  function populateDealResult(result: "win" | "lose" | "tie"): void {
-    setPauseGame(true);
-
-    let resultType = "";
-    let multiplier = 0;
-
-    switch (result) {
-      case "win":
-        resultType = "You Win!";
-        multiplier = 1;
-        break;
-      case "lose":
-        resultType = "Dealer Wins!";
-        multiplier = -1;
-        break;
-      default:
-        resultType = "It's a tie! Bet has been refunded.";
-        multiplier = 0;
-        break;
-    }
-
-    setTotalGames((g) => g + 1);
-    setDealResult({
-      result: resultType,
-      earnings: playerBet * multiplier,
-      newBalance: playerBank + playerBet * multiplier,
-    });
-  }
-
-  useEffect(() => {
-    if (!pauseGame) return;
-    const timer = setTimeout(() => setShowDealResult(true), 1000);
-
-    return () => clearTimeout(timer);
-  }, [pauseGame]);
-
-  const settings: ContextSettings = {
-    playerBank,
-    playerBet,
-    setPlayerBet,
-    totalGames,
-    setTotalGames,
-    showDealWindow,
-    setShowDealWindow,
-    showDealResult,
-    setShowDealResult,
+  const settings: BlackjackLogicContextTypes = {
     gameDeck,
     setGameDeck,
-    startGame,
-    pauseGame,
-    handleStartGame,
-    handleStand,
-    handleRestartGame,
-    showHiddenDealerCard,
-    dealerDrawnCards,
-    playerDrawnCards,
     drawCardCount,
-    addOneCard,
     setPlayerDrawnCards,
-    dealResult,
-    autoDraw,
+    showHiddenDealerCard,
+    playerDrawnCards,
+    dealerDrawnCards,
+    handleHit,
+    handleFinishTurn,
   };
 
   return (

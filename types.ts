@@ -50,32 +50,40 @@ export type DealResult = {
   newBalance: number;
 };
 
-export type ContextSettings = {
+export type BlackjackLogicContextTypes = {
+  gameDeck: Card[];
+  setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
+  drawCardCount: number;
+  setPlayerDrawnCards: React.Dispatch<React.SetStateAction<DrawnCards>>;
+  showHiddenDealerCard: boolean;
+  playerDrawnCards: DrawnCards;
+  dealerDrawnCards: DrawnCards;
+  handleHit: () => void;
+  handleFinishTurn: () => void;
+};
+
+export type GameControlContextTypes = {
+  showDealWindow: boolean;
+  setShowDealWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  autoDraw: boolean;
+  setAutoDraw: React.Dispatch<React.SetStateAction<boolean>>;
+  startGame: boolean;
+  pauseGame: boolean;
+  dealResult: DealResult;
+  showDealResultWindow: boolean;
+  setShowDealResultWindow: React.Dispatch<React.SetStateAction<boolean>>;
+  handleStartGame: () => void;
+  handleRestartGame: () => void;
+  populateDealResult: (result: "win" | "lose" | "tie") => void;
+};
+
+export type PlayerStatsContextTypes = {
   playerBank: number;
+  setPlayerBank: React.Dispatch<React.SetStateAction<number>>;
   playerBet: number;
   setPlayerBet: React.Dispatch<React.SetStateAction<number>>;
   totalGames: number;
   setTotalGames: React.Dispatch<React.SetStateAction<number>>;
-  showDealWindow: boolean;
-  setShowDealWindow: React.Dispatch<React.SetStateAction<boolean>>;
-  showDealResult: boolean;
-  setShowDealResult: React.Dispatch<React.SetStateAction<boolean>>;
-  gameDeck: Card[];
-  setGameDeck: React.Dispatch<React.SetStateAction<Card[]>>;
-  startGame: boolean;
-  pauseGame: boolean;
-  handleStartGame: () => void;
-  handleStand: () => void;
-  handleRestartGame: () => void;
-  showHiddenDealerCard: boolean;
-  dealerDrawnCards: DrawnCards;
-  playerDrawnCards: DrawnCards;
-  setPlayerDrawnCards: React.Dispatch<React.SetStateAction<DrawnCards>>;
-  drawCardCount: number;
-  addOneCard: (
-    player: "You" | "Dealer",
-    cb: React.Dispatch<React.SetStateAction<DrawnCards>>
-  ) => void;
-  dealResult: DealResult;
-  autoDraw: boolean;
+  addToBet: (chipValue: number) => void;
+  clearBet: () => void;
 };
