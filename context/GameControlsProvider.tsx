@@ -29,6 +29,7 @@ export default function GameControlsProvider({
 
   function handleRestartGame(): void {
     setShowDealResultWindow(false);
+    setPlayerBet(0);
     setStartGame(false);
     setDealResult({} as DealResult);
     setShowDealWindow(true);
@@ -58,7 +59,6 @@ export default function GameControlsProvider({
     const earnings: number = playerBet * multiplier;
 
     setPlayerBank((pb) => pb + earnings);
-    setPlayerBet(0);
 
     setTotalGames((g) => g + 1);
     setDealResult({
@@ -66,6 +66,7 @@ export default function GameControlsProvider({
       earnings: playerBet * multiplier,
       newBalance: playerBank + playerBet * multiplier,
     });
+    // setPlayerBet(0);
   }
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export default function GameControlsProvider({
     setAutoDraw,
     startGame,
     pauseGame,
+    setPauseGame,
     dealResult,
     showDealResultWindow,
     setShowDealResultWindow,

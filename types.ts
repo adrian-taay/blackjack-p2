@@ -69,6 +69,7 @@ export type GameControlContextTypes = {
   setAutoDraw: React.Dispatch<React.SetStateAction<boolean>>;
   startGame: boolean;
   pauseGame: boolean;
+  setPauseGame: React.Dispatch<React.SetStateAction<boolean>>;
   dealResult: DealResult;
   showDealResultWindow: boolean;
   setShowDealResultWindow: React.Dispatch<React.SetStateAction<boolean>>;

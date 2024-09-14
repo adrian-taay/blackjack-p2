@@ -11,6 +11,8 @@ import { addOneCard } from "@/utils/addOneCard";
 import { useGameControls } from "./GameControlsProvider";
 import { compareCards } from "@/utils/compareCards";
 
+// import { ClubIcon, DiamondIcon, HeartIcon, SpadeIcon } from "lucide-react";
+
 export const BlackjackContext = createContext({} as BlackjackLogicContextTypes);
 
 const initialState: DrawnCards = {
@@ -19,15 +21,69 @@ const initialState: DrawnCards = {
   cards: [],
 };
 
+// const dummyCards: Card[] = [
+//   {
+//     suit: "Diamond",
+//     icon: <DiamondIcon />,
+//     displayIcon: <DiamondIcon />,
+//     name: "10",
+//     value: 10,
+//   },
+//   {
+//     suit: "Heart",
+//     icon: <HeartIcon />,
+//     displayIcon: <HeartIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Spade",
+//     icon: <SpadeIcon />,
+//     displayIcon: <SpadeIcon />,
+//     name: "A",
+//     value: 11,
+//   },
+//   {
+//     suit: "Spade",
+//     icon: <SpadeIcon />,
+//     displayIcon: <SpadeIcon />,
+//     name: "10",
+//     value: 10,
+//   },
+//   {
+//     suit: "Diamond",
+//     icon: <DiamondIcon />,
+//     displayIcon: <DiamondIcon />,
+//     name: "7",
+//     value: 7,
+//   },
+//   {
+//     suit: "Diamond",
+//     icon: <DiamondIcon />,
+//     displayIcon: <DiamondIcon />,
+//     name: "2",
+//     value: 2,
+//   },
+//   {
+//     suit: "Diamond",
+//     icon: <DiamondIcon />,
+//     displayIcon: <DiamondIcon />,
+//     name: "3",
+//     value: 3,
+//   },
+// ];
+
 function BlackjackProvider({ children }: { children: React.ReactNode }) {
   const {
     startGame,
     pauseGame,
+    setPauseGame,
     autoDraw,
     setAutoDraw,
     populateDealResult,
     showDealResultWindow,
   } = useGameControls();
+  // const [gameDeck, setGameDeck] = useState<Card[]>(dummyCards);
   const [gameDeck, setGameDeck] = useState<Card[]>(shuffledDeckOfCards);
   const [drawCardCount, setDrawCardCount] = useState(0);
   const [showHiddenDealerCard, setShowHiddenDealerCard] = useState(false);
@@ -62,6 +118,8 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
       if (playerTurn) {
         addOneCard("You", setPlayerDrawnCards, newCard);
       } else {
+        if (pauseGame) return;
+
         addOneCard("Dealer", setDealerDrawnCards, newCard);
       }
 
@@ -91,7 +149,7 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     function checkDealerCards() {
       if (finishPlayerTurn && dealerDrawnCards.sumOfCards >= 17) {
-        console.log("checkDealerCars:");
+        console.log("checkDealerCards:");
         setAutoDraw(false);
 
         return compareCards(
@@ -138,18 +196,19 @@ function BlackjackProvider({ children }: { children: React.ReactNode }) {
     const playerBlackjack = playerDrawnCards.sumOfCards === 21;
 
     if (playerBlackjack) {
+      setPauseGame(true);
+      setAutoDraw(false);
+      setFinishPlayerTurn(true);
+      setPlayerTurn(false);
+
       if (dealerDrawnCards.sumOfCards === 21) {
-        setAutoDraw(false);
         setShowHiddenDealerCard(true);
-        populateDealResult("tie");
 
-        return console.log("It's a tie! Bet has been refunded.");
+        return populateDealResult("tie");
       }
-
       setShowHiddenDealerCard(true);
-      populateDealResult("win");
 
-      return console.log("You win!");
+      return populateDealResult("win");
     }
   }
 
